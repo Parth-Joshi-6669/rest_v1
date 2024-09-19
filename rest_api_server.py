@@ -24,6 +24,17 @@ def welcome():
     response.content_type = 'text/plain' 
     return 'hello'
 
+@app.route('/henlo')
+def henlo():
+    pprint(dict(request.headers))
+    response.set_header('Vary', 'Accept')
+    if 'text/html' in request.headers.get('Accept', '*/*'):
+        response.content_type = 'text/html' 
+        return '<h1>Henlooooo!!!</h1>' 
+  
+    response.content_type = 'text/plain' 
+    return 'hello ... F'
+
 @app.route('/now', method='GET')
 def time_server():
     response.content_type = 'text/plain' 
